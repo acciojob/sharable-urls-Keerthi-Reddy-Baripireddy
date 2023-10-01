@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <script type="text/javascript" src="./script.js">
-</script>
-  </body>
+<head>
+    <title>URL Query String Generator</title>
+</head>
+<body>
+    <form id="urlForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
 
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required><br><br>
+
+        <input type="submit" id="button" value="Generate URL">
+    </form>
+
+    <h3 id="url">https://localhost:8080/</h3>
+
+    <script>
+        document.getElementById('urlForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting
+
+            // Get values from form inputs
+            var name = document.getElementById('name').value;
+            var year = document.getElementById('year').value;
+
+            // Create the query string
+            var queryString = '?name=' + encodeURIComponent(name) + '&year=' + encodeURIComponent(year);
+
+            // Update the URL in the h3 element
+            var urlElement = document.getElementById('url');
+            urlElement.textContent = 'https://localhost:8080/' + queryString;
+        });
+    </script>
+</body>
 </html>
